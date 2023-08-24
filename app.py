@@ -1,7 +1,9 @@
 from flask import Flask,request,jsonify
 import json
 app= Flask(__name__)
-animes=[{"nombre":"a","tipo":"a","poder":1},{"nombre":"b","tipo":"b","poder":2},{"nombre":"c","tipo":"c","poder":3}]
+with open('date.json', 'r') as json_file:
+    data = json.load(json_file)
+animes=data
 @app.route('/anime',methods=['GET'])
 def anime():
     return animes
@@ -44,3 +46,7 @@ def CambioParcial(id):
             if key in anime:
                 anime[key] = value
         return animes
+    
+
+
+# Cargar el archivo JSON
